@@ -15,7 +15,23 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@movies-plus/movies-list/feature-shell": [
+        "libs/movies-list/feature-shell/src/index.ts"
+      ],
+      "@movies-plus/movie-details/feature-shell": [
+        "libs/movie-details/feature-shell/src/index.ts"
+      ],
+      "@movies-plus/shared/data-access-movie": [
+        "libs/shared/data-access-movie/src/index.ts"
+      ],
+      "@movies-plus/shared/data-access": [
+        "libs/shared/data-access/src/index.ts"
+      ],
+      "@movies-plus/movies-list/feature-search-bar": [
+        "libs/movies-list/feature-search-bar/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

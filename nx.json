@@ -13,6 +13,21 @@
     },
     "movies-plus": {
       "tags": []
+    },
+    "movies-list-feature-shell": {
+      "tags": []
+    },
+    "movie-details-feature-shell": {
+      "tags": []
+    },
+    "shared-data-access-movie": {
+      "tags": []
+    },
+    "shared-data-access": {
+      "tags": []
+    },
+    "movies-list-feature-search-bar": {
+      "tags": []
     }
   }
 }

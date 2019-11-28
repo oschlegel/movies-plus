@@ -1,0 +1,13 @@
+<ng-container *ngIf="movie$ | async; let movie">
+  <figure class="image">
+    <img [src]="movie.Poster" />
+  </figure>
+  <table class="table is-fullwidth">
+    <tbody>
+      <tr *ngFor="let prop of getMovieProperties(movie)">
+        <td>{{prop[0]}}</td>
+        <td>{{prop[1]}}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>

@@ -82,3 +82,25 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 ## Further help
 
 Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
+
+## Commands used for setup
+
+```bash
+npm init nx-workspace movies-plus # new movies-plus --preset="angular" --appName="movies-plus" --style="scss" --collection=@nrwl/workspace
+
+ng generate @nrwl/angular:library FeatureShell --directory=MoviesList --lazy --parentModule=apps/movies-plus/src/app/app-routing.module.ts --routing --style=scss
+
+ng generate @schematics/angular:component MoviesList --project=movies-list-feature-shell --changeDetection=OnPush --style=scss
+
+ng generate @nrwl/angular:library FeatureShell --directory=MovieDetails --lazy --parentModule=apps/movies-plus/src/app/app-routing.module.ts --routing --style=scss
+
+ng generate @nrwl/angular:library DataAccessMovie --directory=shared --style=scss
+
+ng generate @schematics/angular:service Movie --project=shared-data-access-movie
+
+ng generate @nrwl/angular:library DataAccess --directory=shared --style=scss
+
+ng generate @nrwl/angular:library FeatureSearchBar --directory=movies-list --style=scss
+
+ng generate @schematics/angular:component SearchBar --project=movies-list-feature-search-bar --changeDetection=OnPush --export --style=scss
+```

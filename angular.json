@@ -25,7 +25,10 @@
               "apps/movies-plus/src/favicon.ico",
               "apps/movies-plus/src/assets"
             ],
-            "styles": ["apps/movies-plus/src/styles.scss"],
+            "styles": [
+              "node_modules/bulma/css/bulma.min.css",
+              "apps/movies-plus/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -121,6 +124,173 @@
             "tsConfig": ["apps/movies-plus-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/movies-plus-e2e/**"]
           }
+        }
+      }
+    },
+    "movies-list-feature-shell": {
+      "projectType": "library",
+      "root": "libs/movies-list/feature-shell",
+      "sourceRoot": "libs/movies-list/feature-shell/src",
+      "prefix": "movies-plus",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/movies-list/feature-shell/tsconfig.lib.json",
+              "libs/movies-list/feature-shell/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/movies-list/feature-shell/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/movies-list/feature-shell/jest.config.js",
+            "tsConfig": "libs/movies-list/feature-shell/tsconfig.spec.json",
+            "setupFile": "libs/movies-list/feature-shell/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "movie-details-feature-shell": {
+      "projectType": "library",
+      "root": "libs/movie-details/feature-shell",
+      "sourceRoot": "libs/movie-details/feature-shell/src",
+      "prefix": "movies-plus",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/movie-details/feature-shell/tsconfig.lib.json",
+              "libs/movie-details/feature-shell/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/movie-details/feature-shell/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/movie-details/feature-shell/jest.config.js",
+            "tsConfig": "libs/movie-details/feature-shell/tsconfig.spec.json",
+            "setupFile": "libs/movie-details/feature-shell/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared-data-access-movie": {
+      "projectType": "library",
+      "root": "libs/shared/data-access-movie",
+      "sourceRoot": "libs/shared/data-access-movie/src",
+      "prefix": "movies-plus",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/data-access-movie/tsconfig.lib.json",
+              "libs/shared/data-access-movie/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/data-access-movie/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/data-access-movie/jest.config.js",
+            "tsConfig": "libs/shared/data-access-movie/tsconfig.spec.json",
+            "setupFile": "libs/shared/data-access-movie/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared-data-access": {
+      "projectType": "library",
+      "root": "libs/shared/data-access",
+      "sourceRoot": "libs/shared/data-access/src",
+      "prefix": "movies-plus",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/data-access/tsconfig.lib.json",
+              "libs/shared/data-access/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/data-access/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/data-access/jest.config.js",
+            "tsConfig": "libs/shared/data-access/tsconfig.spec.json",
+            "setupFile": "libs/shared/data-access/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "movies-list-feature-search-bar": {
+      "projectType": "library",
+      "root": "libs/movies-list/feature-search-bar",
+      "sourceRoot": "libs/movies-list/feature-search-bar/src",
+      "prefix": "movies-plus",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/movies-list/feature-search-bar/tsconfig.lib.json",
+              "libs/movies-list/feature-search-bar/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/movies-list/feature-search-bar/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/movies-list/feature-search-bar/jest.config.js",
+            "tsConfig": "libs/movies-list/feature-search-bar/tsconfig.spec.json",
+            "setupFile": "libs/movies-list/feature-search-bar/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
         }
       }
     }

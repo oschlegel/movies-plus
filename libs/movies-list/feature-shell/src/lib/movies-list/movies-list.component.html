@@ -1,0 +1,25 @@
+<div class="content">
+  <movies-plus-search-bar></movies-plus-search-bar>
+</div>
+<div
+  class="box"
+  *ngFor="let movie of (movies$ | async)?.Search"
+>
+  <article class="media">
+    <div class="media-left">
+      <figure class="image">
+        <img [src]="movie.Poster" alt="Image" />
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="content">
+          <strong>{{ movie.Title }}</strong> <small>({{ movie.Year }})</small>
+          <br />
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+          efficitur sit amet massa fringilla egestas. Nullam condimentum luctus
+          turpis.
+      </div>
+      <button class="button is-primary" (click)="onMovieClick(movie)">Details</button>
+    </div>
+  </article>
+</div>
