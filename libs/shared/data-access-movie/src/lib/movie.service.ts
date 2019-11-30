@@ -24,7 +24,7 @@ export class MovieService {
       filter(searchText => !!searchText),
       switchMap(searchText =>
         this.httpClient.get('http://www.omdbapi.com', {
-          params: { s: searchText }
+          params: { s: searchText, type: 'movie' }
         })
       )
     );

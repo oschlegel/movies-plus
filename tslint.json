@@ -56,8 +56,40 @@
         "allow": [],
         "depConstraints": [
           {
-            "sourceTag": "*",
+            "sourceTag": "type:util",
+            "onlyDependOnLibsWithTags": ["type:utils"]
+          },
+          {
+            "sourceTag": "type:ui",
+            "onlyDependOnLibsWithTags": ["type:ui", "type:utils"]
+          },
+          {
+            "sourceTag": "type:data-access",
+            "onlyDependOnLibsWithTags": ["type:data-access", "type:utils"]
+          },
+          {
+            "sourceTag": "type:feature",
+            "onlyDependOnLibsWithTags": ["type:feature", "type:data-access", "type:ui", "type:utils"]
+          },
+          {
+            "sourceTag": "type:app",
             "onlyDependOnLibsWithTags": ["*"]
+          },
+          {
+            "sourceTag": "scope:shared",
+            "onlyDependOnLibsWithTags": ["scope:shared"]
+          },
+          {
+            "sourceTag": "scope:app",
+            "onlyDependOnLibsWithTags": ["*"]
+          },
+          {
+            "sourceTag": "scope:movies-list",
+            "onlyDependOnLibsWithTags": ["scope:movies-list", "scope:shared"]
+          },
+          {
+            "sourceTag": "scope:movie-details",
+            "onlyDependOnLibsWithTags": ["scope:movie-details", "scope:shared"]
           }
         ]
       }

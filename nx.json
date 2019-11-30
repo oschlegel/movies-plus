@@ -9,25 +9,25 @@
   },
   "projects": {
     "movies-plus-e2e": {
-      "tags": []
+      "tags": ["scope:app", "type:app"]
     },
     "movies-plus": {
-      "tags": []
+      "tags": ["scope:app", "type:app"]
     },
     "movies-list-feature-shell": {
-      "tags": []
+      "tags": ["scope:movies-list", "type:feature"]
     },
     "movie-details-feature-shell": {
-      "tags": []
+      "tags": ["scope:movies-details", "type:feature"]
     },
     "shared-data-access-movie": {
-      "tags": []
+      "tags": ["scope:shared", "type:data-access"]
     },
     "shared-data-access": {
-      "tags": []
+      "tags": ["scope:shared", "type:data-access"]
     },
     "movies-list-feature-search-bar": {
-      "tags": []
+      "tags": ["scope:movies-list", "type:feature"]
     }
   }
 }

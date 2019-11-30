@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {MovieService}from '@movies-plus/shared/data-access-movie';
+import { MovieService } from '@movies-plus/shared/data-access-movie';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -12,13 +12,13 @@ import { Router } from '@angular/router';
 export class MoviesListComponent implements OnInit {
   movies$: Observable<any>;
 
-  constructor(private movieService: MovieService, private router: Router) { }
+  constructor(private movieService: MovieService, private router: Router) {}
 
   ngOnInit() {
     this.movies$ = this.movieService.search();
   }
 
   onMovieClick(movie) {
-    this.router.navigate(['movies',movie.imdbID]);
+    this.router.navigate(['movies', movie.imdbID]);
   }
 }
