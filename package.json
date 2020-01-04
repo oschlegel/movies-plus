@@ -24,6 +24,7 @@
     "update": "ng update @nrwl/workspace",
     "update:check": "ng update",
     "workspace-schematic": "nx workspace-schematic",
+    "tools:build": "tsc -p tools/tsconfig.tools.json",
     "dep-graph": "nx dep-graph",
     "help": "nx help"
   },
