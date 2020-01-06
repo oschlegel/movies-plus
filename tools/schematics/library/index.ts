@@ -3,9 +3,10 @@ import {
   externalSchematic,
   Rule,
   Tree,
-  SchematicContext
+  SchematicContext,
+  noop
 } from '@angular-devkit/schematics';
-import { updateJsonInTree } from '@nrwl/workspace';
+import { updateJsonInTree,createOrUpdate, readJsonInTree, NxJson } from '@nrwl/workspace';
 import { strings } from '@angular-devkit/core';
 import { LibrarySchema, LibraryType } from './library-schema';
 
@@ -51,17 +52,56 @@ const updateTslintWithScope = (scopeTag: string): Rule => {
   ]);
 };
 
+const createTestingLibrary = (projectDirectory: string, projectName: string):Rule => {
+  const projectRoot = `libs/${projectDirectory}/${projectName}`;
+
+  return chain([
+    // Create index file
+    (host: Tree, context: SchematicContext) => {
+      return createOrUpdate(host, `${projectRoot}/src/index.testing.ts`,'');
+    },
+    // Update paths in workspace tsconfig
+    (host: Tree, context: SchematicContext) => {
+      const nxJson = readJsonInTree<NxJson>(host, 'nx.json');
+      return updateJsonInTree('tsconfig.json', json => {
+        const compilerOptions = json.compilerOptions;
+        compilerOptions.paths[`@${nxJson.npmScope}/${projectDirectory}/${projectName}/testing`] = [
+          `${projectRoot}/src/index.testing.ts`
+        ];
+        return json;
+      })(host, context);
+    },
+    // Update excludes in library tsconfig.lib
+    (host: Tree, context: SchematicContext) => {
+      return updateJsonInTree(`${projectRoot}/tsconfig.lib.json`, json => {
+        json.exclude.push("src/index.testing.ts");
+        return json;
+      })(host, context);
+    },
+    // Update files in library tsconfig.spec
+    (host: Tree, context: SchematicContext) => {
+      return updateJsonInTree(`${projectRoot}/tsconfig.spec.json`, json => {
+        json.files.push("src/index.testing.ts");
+        return json;
+      })(host, context);
+    }
+  ]);
+};
+
 export default function(schema: LibrarySchema): Rule {
   const scopeTag = `scope:${strings.dasherize(schema.scope)}`;
   const typeTag = `type:${strings.dasherize(schema.type)}`;
+  const projectName = getFormattedLibraryName(schema.name, schema.type);
+  const projectDirectory = strings.dasherize(schema.scope);
 
   return chain([
     externalSchematic('@nrwl/angular', 'lib', {
       ...schema,
-      name: getFormattedLibraryName(schema.name, schema.type),
-      directory: strings.dasherize(schema.scope),
+      name: projectName,
+      directory: projectDirectory,
       tags: `${scopeTag},${typeTag}`
     }),
-    updateTslintWithScope(scopeTag)
+    updateTslintWithScope(scopeTag),
+    schema.testingLibrary ? createTestingLibrary(projectDirectory,projectName):noop()
   ]);
 }

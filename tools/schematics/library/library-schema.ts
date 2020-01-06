@@ -22,4 +22,6 @@ export interface LibrarySchema {
   type: LibraryType;
 
   unitTestRunner: UnitTestRunner;
+
+  testingLibrary?: boolean;
 }

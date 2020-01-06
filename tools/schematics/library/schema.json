@@ -101,6 +101,11 @@
       "enum": ["karma", "jest", "none"],
       "description": "Test runner to use for unit tests",
       "default": "jest"
+    },
+    "testingLibrary": {
+      "type": "boolean",
+      "default": false,
+      "description": "Create corresponding testing library"
     }
   },
   "required": ["scope", "type"]
