@@ -66,7 +66,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "movies-plus:build"
+            "browserTarget": "movies-plus:build",
+            "proxyConfig": "apps/movies-plus/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -87,7 +88,10 @@
               "apps/movies-plus/tsconfig.app.json",
               "apps/movies-plus/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/movies-plus/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/movies-plus/**"
+            ]
           }
         },
         "test": {
@@ -121,8 +125,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/movies-plus-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/movies-plus-e2e/**"]
+            "tsConfig": [
+              "apps/movies-plus-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/movies-plus-e2e/**"
+            ]
           }
         }
       }
@@ -242,7 +251,10 @@
               "libs/shared/data-access/tsconfig.lib.json",
               "libs/shared/data-access/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/data-access/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/data-access/**"
+            ]
           }
         },
         "test": {
@@ -291,6 +303,65 @@
       "schematics": {
         "@nrwl/angular:component": {
           "styleext": "scss"
+        }
+      }
+    },
+    "movies-plus-server": {
+      "root": "apps/movies-plus-server",
+      "sourceRoot": "apps/movies-plus-server/src",
+      "projectType": "application",
+      "prefix": "movies-plus-server",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/movies-plus-server",
+            "main": "apps/movies-plus-server/src/main.ts",
+            "tsConfig": "apps/movies-plus-server/tsconfig.app.json",
+            "assets": [
+              "apps/movies-plus-server/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/movies-plus-server/src/environments/environment.ts",
+                  "with": "apps/movies-plus-server/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "movies-plus-server:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/movies-plus-server/tsconfig.app.json",
+              "apps/movies-plus-server/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/movies-plus-server/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/movies-plus-server/jest.config.js",
+            "tsConfig": "apps/movies-plus-server/tsconfig.spec.json"
+          }
         }
       }
     }
