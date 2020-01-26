@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MovieService } from '@movies-plus/shared/data-access-movie';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'movies-plus-movie-details',
@@ -20,16 +20,22 @@ export class MovieDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.movie$ = this.route.params.pipe(
-      switchMap(params => this.movieService.loadById(params['movieId']))
+      switchMap(params => this.movieService.loadById(params['movieId'])),
+      tap(console.log)
     );
   }
 
   getMovieProperties(movie) {
-    return Object.keys(movie).filter(key => key !== 'Poster').map(key => {
-      if(key === 'Ratings') {
-        return [key, movie[key].map(it => `${it.Source}: ${it.Value}`).join(', ')];
-      }
-      return [key, movie[key]];
-    });
+    return Object.keys(movie)
+      .filter(key => key !== 'Poster')
+      .map(key => {
+        if (key === 'Ratings') {
+          return [
+            key,
+            movie[key].map(it => `${it.Source}: ${it.Value}`).join(', ')
+          ];
+        }
+        return [key, movie[key]];
+      });
   }
 }

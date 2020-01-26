@@ -1,15 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { switchMap, filter } from 'rxjs/operators';
+import { switchMap, filter, map } from 'rxjs/operators';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
   private searchText$: BehaviorSubject<string> = new BehaviorSubject(null);
+  private movieQuery = gql`
+    query getMovie($id: String!) {
+      movie(imdbID: $id) {
+        Plot
+        Poster
+        Title
+        Ratings {
+          Source
+          Value
+        }
+      }
+    }
+  `;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private apollo: Apollo) {}
 
   set searchText(text: string) {
     this.searchText$.next(text);
@@ -31,8 +46,13 @@ export class MovieService {
   }
 
   loadById(id: string) {
-    return this.httpClient.get('http://www.omdbapi.com', {
-      params: { i: id, plot: 'full' }
-    });
+    return this.apollo
+      .watchQuery({
+        query: this.movieQuery,
+        variables: {
+          id
+        }
+      })
+      .valueChanges.pipe(map(queryResult => queryResult.data['movie']));
   }
 }

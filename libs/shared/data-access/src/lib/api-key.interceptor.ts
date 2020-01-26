@@ -13,6 +13,9 @@ export class ApiKeyInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    if (req.url.indexOf('graphql')) {
+      return next.handle(req);
+    }
     return next.handle(
       req.clone({ params: req.params.append('apikey', '726ff8bd') })
     );
