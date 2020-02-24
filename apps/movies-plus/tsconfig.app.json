@@ -6,7 +6,7 @@
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
   "include": [
-    "**/*.ts",
+    "**/*.d.ts",
     "../../libs/movies-list/feature-shell/src/index.ts",
     "../../libs/movie-details/feature-shell/src/index.ts"
   ],

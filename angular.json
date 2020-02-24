@@ -20,7 +20,7 @@
             "main": "apps/movies-plus/src/main.ts",
             "polyfills": "apps/movies-plus/src/polyfills.ts",
             "tsConfig": "apps/movies-plus/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "apps/movies-plus/src/favicon.ico",
               "apps/movies-plus/src/assets"
@@ -44,7 +44,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -88,10 +87,7 @@
               "apps/movies-plus/tsconfig.app.json",
               "apps/movies-plus/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/movies-plus/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/movies-plus/**"]
           }
         },
         "test": {
@@ -99,7 +95,8 @@
           "options": {
             "jestConfig": "apps/movies-plus/jest.config.js",
             "tsConfig": "apps/movies-plus/tsconfig.spec.json",
-            "setupFile": "apps/movies-plus/src/test-setup.ts"
+            "setupFile": "apps/movies-plus/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       }
@@ -125,13 +122,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/movies-plus-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/movies-plus-e2e/**"
-            ]
+            "tsConfig": ["apps/movies-plus-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/movies-plus-e2e/**"]
           }
         }
       }
@@ -160,7 +152,8 @@
           "options": {
             "jestConfig": "libs/movies-list/feature-shell/jest.config.js",
             "tsConfig": "libs/movies-list/feature-shell/tsconfig.spec.json",
-            "setupFile": "libs/movies-list/feature-shell/src/test-setup.ts"
+            "setupFile": "libs/movies-list/feature-shell/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       },
@@ -194,7 +187,8 @@
           "options": {
             "jestConfig": "libs/movie-details/feature-shell/jest.config.js",
             "tsConfig": "libs/movie-details/feature-shell/tsconfig.spec.json",
-            "setupFile": "libs/movie-details/feature-shell/src/test-setup.ts"
+            "setupFile": "libs/movie-details/feature-shell/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       },
@@ -228,7 +222,8 @@
           "options": {
             "jestConfig": "libs/shared/data-access-movie/jest.config.js",
             "tsConfig": "libs/shared/data-access-movie/tsconfig.spec.json",
-            "setupFile": "libs/shared/data-access-movie/src/test-setup.ts"
+            "setupFile": "libs/shared/data-access-movie/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       },
@@ -251,10 +246,7 @@
               "libs/shared/data-access/tsconfig.lib.json",
               "libs/shared/data-access/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/data-access/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/shared/data-access/**"]
           }
         },
         "test": {
@@ -262,7 +254,8 @@
           "options": {
             "jestConfig": "libs/shared/data-access/jest.config.js",
             "tsConfig": "libs/shared/data-access/tsconfig.spec.json",
-            "setupFile": "libs/shared/data-access/src/test-setup.ts"
+            "setupFile": "libs/shared/data-access/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       },
@@ -296,7 +289,8 @@
           "options": {
             "jestConfig": "libs/movies-list/feature-search-bar/jest.config.js",
             "tsConfig": "libs/movies-list/feature-search-bar/tsconfig.spec.json",
-            "setupFile": "libs/movies-list/feature-search-bar/src/test-setup.ts"
+            "setupFile": "libs/movies-list/feature-search-bar/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       },
@@ -319,9 +313,7 @@
             "outputPath": "dist/apps/movies-plus-server",
             "main": "apps/movies-plus-server/src/main.ts",
             "tsConfig": "apps/movies-plus-server/tsconfig.app.json",
-            "assets": [
-              "apps/movies-plus-server/src/assets"
-            ]
+            "assets": ["apps/movies-plus-server/src/assets"]
           },
           "configurations": {
             "production": {
@@ -350,17 +342,15 @@
               "apps/movies-plus-server/tsconfig.app.json",
               "apps/movies-plus-server/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/movies-plus-server/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/movies-plus-server/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/movies-plus-server/jest.config.js",
-            "tsConfig": "apps/movies-plus-server/tsconfig.spec.json"
+            "tsConfig": "apps/movies-plus-server/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }

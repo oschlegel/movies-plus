@@ -9,46 +9,26 @@
   },
   "projects": {
     "movies-plus-e2e": {
-      "tags": [
-        "scope:app",
-        "type:app"
-      ]
+      "tags": ["scope:app", "type:app"],
+      "implicitDependencies": ["movies-plus"]
     },
     "movies-plus": {
-      "tags": [
-        "scope:app",
-        "type:app"
-      ]
+      "tags": ["scope:app", "type:app"]
     },
     "movies-list-feature-shell": {
-      "tags": [
-        "scope:movies-list",
-        "type:feature"
-      ]
+      "tags": ["scope:movies-list", "type:feature"]
     },
     "movie-details-feature-shell": {
-      "tags": [
-        "scope:movies-details",
-        "type:feature"
-      ]
+      "tags": ["scope:movies-details", "type:feature"]
     },
     "shared-data-access-movie": {
-      "tags": [
-        "scope:shared",
-        "type:data-access"
-      ]
+      "tags": ["scope:shared", "type:data-access"]
     },
     "shared-data-access": {
-      "tags": [
-        "scope:shared",
-        "type:data-access"
-      ]
+      "tags": ["scope:shared", "type:data-access"]
     },
     "movies-list-feature-search-bar": {
-      "tags": [
-        "scope:movies-list",
-        "type:feature"
-      ]
+      "tags": ["scope:movies-list", "type:feature"]
     },
     "movies-plus-server": {
       "tags": []
